@@ -80,7 +80,7 @@ cat /var/www/apache-vhost-template.conf | sed \
     > /etc/apache2/sites-available/${VHOST_FILE}
 
 # Enable vhost configuration
-ln -s /etc/apache2/sites-available/${VHOST_FILE} /etc/apache2/sites-enabled/${VHOST_FILE}
+ln -f -s /etc/apache2/sites-available/${VHOST_FILE} /etc/apache2/sites-enabled/${VHOST_FILE}
 
 # Use default home directory
 if [ -z ${APACHE_RUN_USER_HOME+x} ]; then
