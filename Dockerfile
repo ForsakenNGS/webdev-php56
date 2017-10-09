@@ -3,7 +3,7 @@ FROM php:5.6-apache
 # Install dependencies
 RUN apt-get update && \
     apt-get install -y ca-certificates && update-ca-certificates && \
-    apt-get install -y openssl git sudo unzip wget mysql-client libmcrypt-dev libpng12-dev libxml2-dev libcurl4-openssl-dev libcurl3 sendmail imagemagick cron nano
+    apt-get install -y openssl git sudo unzip wget mysql-client libmcrypt-dev libpng12-dev libxml2-dev libcurl4-openssl-dev libcurl3 sendmail-bin imagemagick cron nano
 
 # Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
