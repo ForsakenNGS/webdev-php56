@@ -46,12 +46,11 @@ if [ -z ${LOG_CUSTOM+x} ]; then
     LOG_CUSTOM="/var/log/apache2/access.log combined"
 fi
 if [ -z ${DIRECTORY_OPTIONS+x} ]; then
-    DIRECTORY_OPTIONS="Indexes Includes FollowSymLinks"
+    DIRECTORY_OPTIONS="-Indexes +Includes +FollowSymLinks"
 fi
 if [ -z ${DIRECTORY_EXTRA+x} ]; then
     DIRECTORY_EXTRA="AllowOverride All"
 fi
-DIRECTORY_EXTRA=${DIRECTORY_PERM//$'\n'/\\n}
 read -d '' DIRECTORY_PERM_DEFAULT <<"EOF"
     #
     # Controls who can get stuff from this server.
