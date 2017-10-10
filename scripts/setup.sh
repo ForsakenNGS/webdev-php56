@@ -149,4 +149,7 @@ chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP $DIRECTORY
 # Start chronjob
 /etc/init.d/cron start
 
+# Start apache
+apache2-foreground > /var/log/apache2/output.log 2>&1 &
+
 exec "$@"
