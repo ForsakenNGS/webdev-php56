@@ -13,11 +13,11 @@ fi
 if [ -z ${APACHE_RUN_GROUP+x} ]; then
     APACHE_RUN_GROUP=${OWNER_FILES_NAMED[5]}
 fi
-if [ -z ${APACHE_RUN_GID+x} ]; then
-    APACHE_RUN_USER=${OWNER_FILES_NUMERIC[4]}
-fi
 if [ -z ${APACHE_RUN_UID+x} ]; then
-    APACHE_RUN_GROUP=${OWNER_FILES_NUMERIC[5]}
+    APACHE_RUN_UID=${OWNER_FILES_NUMERIC[4]}
+fi
+if [ -z ${APACHE_RUN_GID+x} ]; then
+    APACHE_RUN_GID=${OWNER_FILES_NUMERIC[5]}
 fi
 if [ -z ${VHOST_FILE+x} ]; then
     VHOST_FILE="001-unnamed.conf"
