@@ -1,11 +1,23 @@
 #!/bin/bash
 
+
 # Fallback to default values if variables are not set
+if [ -z ${DOCUMENT_ROOT+x} ]; then
+    DOCUMENT_ROOT="/var/www/html"
+fi
+OWNER_FILES_NAMED=(`ls -l ${DOCUMENT_ROOT}`)
+OWNER_FILES_NUMERIC=(`ls -l -n ${DOCUMENT_ROOT}`)
 if [ -z ${APACHE_RUN_USER+x} ]; then
-    APACHE_RUN_USER="www-data"
+    APACHE_RUN_USER=${OWNER_FILES_NAMED[4]}
 fi
 if [ -z ${APACHE_RUN_GROUP+x} ]; then
-    APACHE_RUN_GROUP="www-data"
+    APACHE_RUN_GROUP=${OWNER_FILES_NAMED[5]}
+fi
+if [ -z ${APACHE_RUN_GID+x} ]; then
+    APACHE_RUN_USER=${OWNER_FILES_NUMERIC[4]}
+fi
+if [ -z ${APACHE_RUN_UID+x} ]; then
+    APACHE_RUN_GROUP=${OWNER_FILES_NUMERIC[5]}
 fi
 if [ -z ${VHOST_FILE+x} ]; then
     VHOST_FILE="001-unnamed.conf"
@@ -18,9 +30,6 @@ if [ -z ${SERVER_NAME+x} ]; then
 fi
 if [ -z ${SERVER_ALIAS+x} ]; then
     SERVER_ALIAS="webdev.dock *.webdev.dock"
-fi
-if [ -z ${DOCUMENT_ROOT+x} ]; then
-    DOCUMENT_ROOT="/var/www/html"
 fi
 if [ -z ${VHOST_EXTRAS+x} ]; then
     VHOST_EXTRAS=""
